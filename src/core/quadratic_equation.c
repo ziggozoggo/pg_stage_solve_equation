@@ -36,6 +36,7 @@ int solve_equation(const double a, const double b, const double c, double *x1,
       return_code = QUAD_EQ_NO_ROOTS;
     } else if (discriminant == 0) {
       *x1 = -b / (2 * a);
+      *x2 = *x1;
       return_code = QUAD_EQ_ONE_ROOT;
     } else {
       *x1 = get_root(&a, &b, &discriminant, X1);

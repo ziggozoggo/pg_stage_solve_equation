@@ -6,7 +6,7 @@
 Сборка:
 * make, make all: библиотека quadratic_equation.a
 * make gcov_report: подготовка и запуск тестов, формирование отчёта о покрытии
-* make test: подготовка и запуск тестов
+* make check: подготовка и запуск тестов
 * make valgrind_check: подготовка тестов и их запуск при помощи valgrind (отчёт о проверке доступен в src/unit_tests/build/RESULT_VALGRIND.txt)
 
 Входные параметры:

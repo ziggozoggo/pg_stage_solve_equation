@@ -4,7 +4,7 @@
 test_results_t run_core_tests() {
   test_results_t core_res_tests = {0};
 
-  Suite *suites_basics[] = {NULL};
+  Suite *suites_basics[] = {suite_quadratic_equation(), NULL};
   run_test_module("Basics unit-tests:", suites_basics, &core_res_tests);
 
   printf(DIVIDER_TEXT);

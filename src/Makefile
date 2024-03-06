@@ -1,5 +1,5 @@
 CC          := gcc
-CSTANDARTS  := -std=c11 -D_POSIX_C_SOURCE=200809L -I.
+CSTANDARTS  := -std=c11 -D_POSIX_C_SOURCE=200809L 
 CWARNS      := -Wall -Werror -Wextra
 CFLAGS      := $(CSTANDARTS) $(CWARNS)
 GCOV_FLAGS  := -fprofile-arcs -ftest-coverage

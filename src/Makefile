@@ -5,6 +5,8 @@ CFLAGS      := $(CSTANDARTS) $(CWARNS)
 GCOV_FLAGS  := -fprofile-arcs -ftest-coverage
 LIBS=
 
+CODE_STYLE	:= Google
+
 OS=$(shell uname -s)
 ifeq ($(OS), Linux)
   LIBS = -lm
@@ -86,11 +88,7 @@ clean: clean_obj clean_gcov
 .PHONY: clang_check clang
 
 clang_check:
-	cp ../materials/linters/.clang-format ./
-	find . -type f \( -name "*.c" -o -name "*.h" \) -exec clang-format -n {} \;
-	rm .clang-format
+	find . -type f \( -name "*.c" -o -name "*.h" \) -exec clang-format --style=$(CODE_STYLE) -n {} \;
 
 clang:
-	cp ../materials/linters/.clang-format ./
-	find . -type f \( -name "*.c" -o -name "*.h" \) -exec clang-format -i {} \;
-	rm .clang-format
+	find . -type f \( -name "*.c" -o -name "*.h" \) -exec clang-format --style=$(CODE_STYLE) -i {} \;

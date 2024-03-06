@@ -1,5 +1,5 @@
-#include "test_quadratic_equation.h"
 #include "suites_runner.h"
+#include "test_quadratic_equation.h"
 
 test_results_t run_core_tests() {
   test_results_t core_res_tests = {0};

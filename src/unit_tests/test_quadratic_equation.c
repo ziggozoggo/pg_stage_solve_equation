@@ -32,7 +32,7 @@ START_TEST(normal_manual_one_root) {
 }
 END_TEST
 
-START_TEST(normal_manual_two_roots) {
+START_TEST(normal_manual_two_roots01) {
   double a = 2;
   double b = -5;
   double c = 3;
@@ -41,6 +41,22 @@ START_TEST(normal_manual_two_roots) {
 
   double expected_x1 = 1.5;
   double expexted_x2 = 1;
+
+  ck_assert_int_eq(solve_equation(a, b, c, &x1, &x2), QUAD_EQ_OK);
+  ck_assert_double_eq_tol(x1, expected_x1, QUAD_EQ_DBL_EPS);
+  ck_assert_double_eq_tol(x2, expexted_x2, QUAD_EQ_DBL_EPS);
+}
+END_TEST
+
+START_TEST(normal_manual_two_roots02) {
+  double a = 2;
+  double b = 3;
+  double c = 0;
+  double x1, x2;
+  x1 = x2 = 0;
+
+  double expected_x1 = 0;
+  double expexted_x2 = -1.5;
 
   ck_assert_int_eq(solve_equation(a, b, c, &x1, &x2), QUAD_EQ_OK);
   ck_assert_double_eq_tol(x1, expected_x1, QUAD_EQ_DBL_EPS);
@@ -72,8 +88,10 @@ END_TEST
 START_TEST(check_data_inf) {
   double x1, x2;
   ck_assert_int_eq(solve_equation(INFINITY, -5, 2, &x1, &x2), QUAD_EQ_ERROR);
-  ck_assert_int_eq(solve_equation(INFINITY, INFINITY, 2, &x1, &x2), QUAD_EQ_ERROR);
-  ck_assert_int_eq(solve_equation(INFINITY, INFINITY, INFINITY, &x1, &x2), QUAD_EQ_ERROR);
+  ck_assert_int_eq(solve_equation(INFINITY, INFINITY, 2, &x1, &x2),
+                   QUAD_EQ_ERROR);
+  ck_assert_int_eq(solve_equation(INFINITY, INFINITY, INFINITY, &x1, &x2),
+                   QUAD_EQ_ERROR);
   ck_assert_int_eq(solve_equation(2, -5, INFINITY, &x1, &x2), QUAD_EQ_ERROR);
 }
 END_TEST
@@ -92,7 +110,8 @@ Suite *suite_quadratic_equation() {
   TCase *normal_cases = tcase_create("normal_cases");
   tcase_add_test(normal_cases, normal_manual_a_is_zero);
   tcase_add_test(normal_cases, normal_manual_one_root);
-  tcase_add_test(normal_cases, normal_manual_two_roots);
+  tcase_add_test(normal_cases, normal_manual_two_roots01);
+  tcase_add_test(normal_cases, normal_manual_two_roots02);
   suite_add_tcase(suite, normal_cases);
 
   TCase *anomaly_cases = tcase_create("anomaly_cases");

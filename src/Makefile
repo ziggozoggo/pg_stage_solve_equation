@@ -55,6 +55,8 @@ test: $(TARGET)
 	cd $(TEST_DIR) && make
 	cd $(TEST_DIR) && ./$(TEST_EXE)
 
+check: test
+
 test_no_warn: $(TARGET)
 	cd $(TEST_DIR) && make test_no_warn
 	cd $(TEST_DIR) && ./$(TEST_EXE)

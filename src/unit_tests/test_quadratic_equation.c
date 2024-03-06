@@ -78,6 +78,14 @@ START_TEST(check_data_inf) {
 }
 END_TEST
 
+START_TEST(check_data_null) {
+  double x1, x2;
+  ck_assert_int_eq(solve_equation(3, -5, 2, NULL, NULL), QUAD_EQ_ERROR);
+  ck_assert_int_eq(solve_equation(3, -5, 2, &x1, NULL), QUAD_EQ_ERROR);
+  ck_assert_int_eq(solve_equation(3, -5, 2, NULL, &x2), QUAD_EQ_ERROR);
+}
+END_TEST
+
 Suite *suite_quadratic_equation() {
   Suite *suite = suite_create("suite_quadratic_equation");
 
@@ -92,6 +100,7 @@ Suite *suite_quadratic_equation() {
   tcase_add_test(anomaly_cases, check_data_nan);
   tcase_add_test(anomaly_cases, check_data_inf);
   tcase_add_test(anomaly_cases, check_data_inf);
+  tcase_add_test(anomaly_cases, check_data_null);
   suite_add_tcase(suite, anomaly_cases);
 
   return suite;
